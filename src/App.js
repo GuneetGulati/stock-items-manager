@@ -9,43 +9,23 @@ import { useSelector , useDispatch} from "react-redux";
 
 function App() {
 
-  // const gid = useSelector(selectId);
-  // const [present, setpresent] = useState(localStorage.getItem("current-user"));
-  // const [id, setId] = useState();
-  // useEffect(() => {
-  //   setpresent(gid)
-  // }, [])
-
-
   return (
-    <Router className="App">
-      <div className="container mt-3">
+    <Router >
+      <div >
         <Switch >
-        {/* {console.log("ssss",present)}
-        {present==null ? (
-          <Redirect to="/" />
-        ) : ( */}
           <Route exact path="/dashboard" component={Dashboard} />
-        {/* )} */}
-
+      
          <Route path="/">
             <div className="row">
               <div className="col-md-8">
                   <h2>Hello</h2>
               </div>
-              <div className="col-md-4 my-auto">
+              <div className="col-md-4">
                   <Login />
               </div>
             </div>
           </Route>
 
-        {/* {id==null ? (
-          <Redirect to="/" />
-        ) : (
-          <Route exact path="/dashboard" component={Dashboard} />
-        )} */}
-
-         
       </Switch>
       </div>
    </Router>

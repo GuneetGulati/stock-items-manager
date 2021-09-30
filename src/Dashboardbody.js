@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Form, Button, Navbar, Container } from "react-bootstrap";
-import { useSelector, useDispatch } from "react-redux";
+import { Form, Button, Navbar, Container ,Table} from "react-bootstrap";
+import { useDispatch } from "react-redux";
 import { useHistory } from "react-router";
-import { Redirect } from "react-router-dom";
-import { selectId, setId, setData, selectData } from "./data/dataSlice";
+import { setId, setData } from "./data/dataSlice";
 import "./Dashboardbody.css";
+
 
 function Dashboardbody() {
   const [name, setName] = useState();
@@ -117,111 +117,146 @@ function Dashboardbody() {
   }
 
   return (
-    <div>
-      <Navbar className="nav" variant="light" bg="light">
+    <div className="full">
+      <Navbar className="nav" variant="light">
         <Container>
-          <Navbar.Brand>{currid?.mobile_number}</Navbar.Brand>
+          <Navbar.Brand>
+            <h5 className="number">{currid?.mobile_number}</h5>
+          </Navbar.Brand>
         </Container>
         <Form className="d-flex">
-          <Button variant="light" onClick={logout}>
+          <h2 className="logout" onClick={logout}>
             LOGOUT
-          </Button>
+          </h2>
         </Form>
       </Navbar>
 
       <div className="row">
         <div className="list">
-          <h2>Items</h2>
-          <hr />
+          <h2 className="list-heading">Items</h2>
 
-          {arr?.map((res) => {
-            return (
-              <div key={res.id}>
-                <h4>{res.id}</h4>
-                <h4>
-                  {res.name} {res.code} {res.salesprice}
-                </h4>
-                <h4>{res.purchaseprice}</h4>
-                <h4>{res.unit}</h4>
-                <h4>{res.date}</h4>
-                <button onClick={(e) => editItem(e, res.id)}>Edit</button>
-                <hr />
-              </div>
-            );
-          })}
+          <div className="list-inner">
+            <div className="list-items">
+              <Table bordered hover>
+                <thead className="thead">
+                  <tr>
+                    <th><h2 className="table-heading">ITEM NAME</h2></th>
+                    <th><h2 className="table-heading">ITEM CODE</h2></th>
+                    <th><h2 className="table-heading">SELLING PRICE</h2></th>
+                    <th><h2 className="table-heading">PURCHASING PRICE</h2></th>
+                    <th><h2 className="table-heading">UNIT</h2></th>
+                    <th><h2 className="table-heading">DATE</h2></th>
+                    <th><h2 className="table-heading">ACTION</h2></th>
+                  </tr>
+                </thead>
+                <tbody className="tbody">
+                  {arr?.map((res) => {
+                return (
+                  <tr key={res.id}>
+                    <td>
+                      {res.name}  
+                    </td>
+                    <td>{res.code}</td>
+                    <td>{res.salesprice}</td>
+                    <td>{res.purchaseprice}</td>
+                    <td>{res.unit}</td>
+                    <td>{res.date}</td>
+                    <td className="table-edit" onClick={(e) => editItem(e, res.id)}>Edit</td>
+                    <hr />
+                  </tr>
+                );
+              })}
+                 
+                </tbody>
+              </Table>
+            </div>
+          </div>
         </div>
         <div className="form">
-          <h2>Creat/Edit items</h2>
+          <h2 className="list-heading">Creat/Edit items</h2>
 
           <Form>
-            <Form.Group className="mb-3">
-              <Form.Label>Item Name*</Form.Label>
-              <Form.Control
-                type="text"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                placeholder="Enter Item name"
-              />
-            </Form.Group>
+            <div className="form-position">
+              <Form.Group className="form-input">
+                <Form.Label>Item Name*</Form.Label>
+                <Form.Control
+                  type="text"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  placeholder="Enter Item name"
+                />
+              </Form.Group>
 
-            <Form.Group className="mb-3">
-              <Form.Label>Item Code</Form.Label>
-              <Form.Control
-                type="text"
-                value={code}
-                onChange={(e) => setCode(e.target.value)}
-                placeholder="Enter Item Code"
-              />
-            </Form.Group>
+              <Form.Group className="form-input">
+                <Form.Label>Item Code</Form.Label>
+                <Form.Control
+                  type="text"
+                  value={code}
+                  onChange={(e) => setCode(e.target.value)}
+                  placeholder="Enter Item Code"
+                />
+              </Form.Group>
+            </div>
 
-            <Form.Group className="mb-3">
-              <Form.Label>Sales Price</Form.Label>
-              <Form.Control
-                type="number"
-                value={salesprice}
-                onChange={(e) => setSalesprice(e.target.value)}
-                placeholder="₹ 0"
-              />
-            </Form.Group>
+            <h2 className="form-bar">Stock and Pricing details(Optional)</h2>
 
-            <Form.Group className="mb-3">
-              <Form.Label>Purchase Price</Form.Label>
-              <Form.Control
-                type="number"
-                value={purchaseprice}
-                onChange={(e) => setPurchaseprice(e.target.value)}
-                placeholder="₹ 0"
-              />
-            </Form.Group>
+            <div className="form-position">
+              <Form.Group className="form-input">
+                <Form.Label>Sales Price</Form.Label>
+                <Form.Control
+                  type="number"
+                  value={salesprice}
+                  onChange={(e) => setSalesprice(e.target.value)}
+                  placeholder="₹ 0"
+                />
+              </Form.Group>
 
-            <Form.Group className="mb-3">
-              <Form.Label>Measuring UNIT</Form.Label>
-              <Form.Control
-                as="select"
-                value={unit}
-                onChange={(e) => setUnit(e.target.value)}
-              >
-                <option>--Select Unit--</option>
-                <option value="pcs">pcs</option>
-                <option value="boxes">boxes</option>
-                <option value="gms">gms</option>
-                <option value="kgs">kgs</option>
-                <option value="ltr">ltr</option>
-              </Form.Control>
-            </Form.Group>
+              <Form.Group className="form-input">
+                <Form.Label>Purchase Price</Form.Label>
+                <Form.Control
+                  type="number"
+                  value={purchaseprice}
+                  onChange={(e) => setPurchaseprice(e.target.value)}
+                  placeholder="₹ 0"
+                />
+              </Form.Group>
+            </div>
 
-            <Form.Group className="mb-3">
-              <Form.Label>Opening Stock Date</Form.Label>
-              <Form.Control
-                type="date"
-                value={date}
-                onChange={(e) => setDate(e.target.value)}
-                placeholder="date"
-              />
-            </Form.Group>
+            <div className="form-position">
+              <Form.Group className="form-input">
+                <Form.Label>Measuring UNIT</Form.Label>
+                <Form.Control
+                  as="select"
+                  value={unit}
+                  onChange={(e) => setUnit(e.target.value)}
+                >
+                  <option>--Select Unit--</option>
+                  <option value="pcs">pcs</option>
+                  <option value="boxes">boxes</option>
+                  <option value="gms">gms</option>
+                  <option value="kgs">kgs</option>
+                  <option value="ltr">ltr</option>
+                </Form.Control>
+              </Form.Group>
 
-            <Button variant="primary" onClick={(e) => submitItem(e)}>
-              Submit
+              <Form.Group className="form-input">
+                <Form.Label>Opening Stock Date</Form.Label>
+                <Form.Control
+                  type="date"
+                  value={date}
+                  onChange={(e) => setDate(e.target.value)}
+                  placeholder="date"
+                />
+              </Form.Group>
+            </div>
+
+            <Button
+              style={{ backgroundColor: "#482cab" }}
+              className="form-button"
+              variant="primary"
+              onClick={(e) => submitItem(e)}
+            >
+              Save
             </Button>
           </Form>
         </div>
