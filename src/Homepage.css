@@ -1,0 +1,42 @@
+.homepage{
+   height: 205h;
+}
+
+.nav-link{
+   margin-right: 100px;
+   padding:80px;
+   width:100%
+}
+
+.hello {
+   margin: auto;
+   margin-top: 140px;
+   padding-left: 300px;
+   width: 70%;
+   padding: 10px;
+
+ }
+
+ /* .row{
+   
+    height: 460px;
+ } */
+
+ .digits{
+    margin-top:60px ;
+    display: flex;
+   justify-content: space-around;
+ }
+
+ .linethree{
+    margin-left: 100px;
+    margin-top: 80px;
+ }
+
+ .freebold{
+    font-weight: 700;
+ }
+
+ .nav-element{
+
+ }

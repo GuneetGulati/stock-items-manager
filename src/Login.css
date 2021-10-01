@@ -1,0 +1,17 @@
+.login {
+  border: 1px solid lightgray;
+  margin-top: 40px;
+  margin-right: 40px;
+  border-radius: 6px;
+  padding: 38px;
+  width: 360px;
+  height: 380px;
+}
+
+.login-button {
+  width: 100%;
+  position: relative;
+  margin-top: 20px;
+}
+
+

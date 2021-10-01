@@ -4,6 +4,7 @@ import axios from "axios";
 import { useSelector , useDispatch} from "react-redux";
 import { selectId,setId, setData, selectData } from "./data/dataSlice";
 import { useHistory } from "react-router-dom";
+import "./Login.css"
 
 function Login() {
   const [mobile, setMobile] = useState("");
@@ -70,10 +71,11 @@ function Login() {
   }
 
   return (
-    <div>
-      <h3>Login</h3>
+    <div className="login">
+      <h5>Login to myBillBook</h5>
       <br />
       <Form>
+
         <Form.Group className="mb-3">
           <Form.Label>Enter Mobile Number</Form.Label>
           <Form.Control
@@ -90,11 +92,11 @@ function Login() {
             value={otp}
             onChange={(e) => setOtp(e.target.value)}
             type="number"
-            placeholder="OTP"
+            placeholder="One Time Password"
           />
         </Form.Group>
 
-        <Button onClick={(e) => handleSubmit(e)} variant="dark">
+        <Button className="login-button" onClick={(e) => handleSubmit(e)} variant="dark">
           Submit
         </Button>
       </Form>

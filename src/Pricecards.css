@@ -1,0 +1,15 @@
+.pricecards{
+    margin-top: 60px;
+    display: flex;
+    flex-direction: row;
+    margin-left: 90px;
+    overflow-x: hidden;
+}
+
+.price-card{
+    border: 1px solid lightgray;
+    height: 400px;
+    width: 420px;
+    border-radius: 5px;
+    margin-left: 27px;
+}
